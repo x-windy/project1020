@@ -5,6 +5,7 @@ import model.User;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
+@WebServlet("/registerServlet")
 public class RegisterServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
@@ -23,6 +25,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html;charset=utf-8");
          String username = req.getParameter("username");
          String password = req.getParameter("password");
          String email = req.getParameter("email");
@@ -36,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
              System.out.println("密码:" + password);
              resp.sendRedirect("index.html");
          }else{// 账号已存在
-            resp.sendRedirect("register.html");
+             req.getRequestDispatcher("register.html").forward(req,resp);
              System.out.println("注册的账号已存在！请重新注册");
          }
 

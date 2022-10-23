@@ -3,13 +3,14 @@ package control;
 import model.User;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+@WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +36,8 @@ public class LoginServlet extends HttpServlet {
                         "    <title>个人资料</title>\n" +
                         "</head>\n" +
                         "<body>\n" +
+                        "<h1>" + session.getAttribute("username") +
+                        ",登录成功</h1>" +
                         "<table>\n" +
                         "    <tr>\n" +
                         "        <td>账号:</td>\n" +
@@ -55,11 +58,11 @@ public class LoginServlet extends HttpServlet {
                         "</body>\n" +
                         "</html>";
             }else {// 返回登录页面
-                resp.sendRedirect("index.html");
+                req.getRequestDispatcher("index.html").forward(req,resp);
                 System.out.println("账号或者密码错误！");
             }
         }else {
-            resp.sendRedirect("index.html");
+            req.getRequestDispatcher("index.html").forward(req,resp);
             System.out.println("账号不存在！");
         }
         if(html!=null){
