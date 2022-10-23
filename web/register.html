@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<base href="http://localhost:8080/javaweb_war_exploded/">
+<body>
+<H1>用户注册</H1>
+<form method="post" action="http://localhost:8080/javaweb_war_exploded/registerServlet">
+    <table>
+        <tr>
+            <td>用户名:</td>
+            <td><input name="username" type="text" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input name="password" type="password" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td>邮箱:</td>
+            <td><input name="email" type="text" maxlength="20"></td>
+        </tr>
+        <tr>
+            <td colspan="3">
+            <input type="submit" value="注册">
+                <input type="reset" value="重填">
+            <input type="button" onclick='location.href=("index.html")' value="点击登录"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
